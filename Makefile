@@ -1,2 +1,2 @@
 up: 
-	cd vagrant && vagrant up
+	cd vagrant && vagrant up --provision
