@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "salt" do |salt|
     salt.vm.hostname = "salt"
     salt.vm.network "private_network", ip: "10.20.30.40"
-    salt.vm.provision "file", source: "../salt/docker-compose.yml", destination: "$HOME/salt/docker-compose.yml"
+    salt.vm.provision "file", source: "../salt/", destination: "$HOME/"
     salt.vm.provision "shell", inline: "docker-compose -f /home/vagrant/salt/docker-compose.yml up -d"
   end
 

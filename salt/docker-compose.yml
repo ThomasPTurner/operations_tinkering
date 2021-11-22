@@ -6,3 +6,6 @@ services:
     ports:
       - 0.0.0.0:4505:4505
       - 0.0.0.0:4506:4506
+    volumes:
+      - ./salt:/srv/salt
+      - ./master.conf:/etc/salt/master.d/master.conf
