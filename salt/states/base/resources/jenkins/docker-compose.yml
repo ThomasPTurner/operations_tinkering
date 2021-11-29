@@ -1,0 +1,8 @@
+version: "3.3"
+
+services:
+  salt:
+    image: jenkins/jenkins:2.322
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
