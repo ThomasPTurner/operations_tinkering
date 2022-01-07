@@ -4,7 +4,7 @@ services:
   jenkins:
     image: jenkins/jenkins:2.322
     ports:
-      - 0.0.0.0:80:80
-      - 0.0.0.0:443:443
       - 0.0.0.0:8080:8080
       - 0.0.0.0:50000:50000
+    volumes:
+      - /srv/jenkins-master/conf:/var/jenkins-master/conf
