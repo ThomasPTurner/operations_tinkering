@@ -2,9 +2,11 @@ version: "3.3"
 
 services:
   jenkins:
-    image: jenkins/jenkins:2.322
+    image: jenkins-with-plugins
     ports:
       - 0.0.0.0:8080:8080
       - 0.0.0.0:50000:50000
+    environment:
+      CASK_JENKINS_CONFIG: /var/jenkins-master/conf/jenkins-config.yml
     volumes:
       - /srv/jenkins-master/conf:/var/jenkins-master/conf

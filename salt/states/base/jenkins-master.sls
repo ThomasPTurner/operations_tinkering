@@ -7,7 +7,7 @@ include:
 
 jenkins/jenkins:
     docker_image.present:
-        - tag: '2.322'
+        - tag: '2.328'
 
 {{ jenkins_compose_file }}:
     file.managed:
@@ -18,6 +18,19 @@ jenkins/jenkins:
     file.managed:
         - source: salt://resources/jenkins/jenkins-config.yml
         - makedirs: true
+
+jenkins_with_plugins_dockerfile:
+    file.managed:
+        - name: {{ jenkins_workdir }}/Dockerfile
+        - source: salt://resources/jenkins/jenkins-with-plugins.Dockerfile
+        - makedirs: true
+
+build-configured-jenkins-image:
+    cmd.run:
+        - name: "docker build -t jenkins-with-plugins {{ jenkins_workdir }}"
+
+jenkins-with-plugins:
+    docker_image.present: []
 
 start-jenkins:
     cmd.run:

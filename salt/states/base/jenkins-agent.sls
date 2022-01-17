@@ -1,4 +1,4 @@
-{% set agent_workdir = '/srv/jenkins-master/' %}
+{% set agent_workdir = '/srv/jenkins-agent/' %}
 {% set agent_compose_file = 'docker-compose.jenkins-agent.yml' %}
 
 include:
