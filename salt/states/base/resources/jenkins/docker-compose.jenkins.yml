@@ -7,6 +7,7 @@ services:
       - 0.0.0.0:8080:8080
       - 0.0.0.0:50000:50000
     environment:
-      CASK_JENKINS_CONFIG: /var/jenkins-master/conf/jenkins-config.yml
+      CASK_JENKINS_CONFIG: /var/jenkins_master/cacsc_configs/jenkins-config.yml
+
     volumes:
-      - /srv/jenkins-master/conf:/var/jenkins-master/conf
+      - /srv/jenkins-master/conf:/var/jenkins_master/cacsc_configs

@@ -19,7 +19,13 @@ jenkins/jenkins:
         - source: salt://resources/jenkins/jenkins-config.yml
         - makedirs: true
 
-jenkins_with_plugins_dockerfile:
+jenkins-plugins-file:
+    file.managed:
+        - name: {{ jenkins_workdir }}/plugins.txt
+        - source: salt://resources/jenkins/plugins.txt
+        - makedirs: true
+
+jenkins-with-plugins-dockerfile:
     file.managed:
         - name: {{ jenkins_workdir }}/Dockerfile
         - source: salt://resources/jenkins/jenkins-with-plugins.Dockerfile
@@ -39,3 +45,4 @@ start-jenkins:
         - pkg: docker-compose-package-install-pkgs
         - file: {{ jenkins_compose_file }}
         - file: {{ jenkins_conf_file }}
+        - file: jenkins-plugins-file
