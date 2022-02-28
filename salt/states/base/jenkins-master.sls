@@ -31,6 +31,12 @@ jenkins-with-plugins-dockerfile:
         - source: salt://resources/jenkins/jenkins-with-plugins.Dockerfile
         - makedirs: true
 
+agent-ssh-key:
+    file.managed:
+        - name: {{ jenkins_workdir }}/conf/agent-ssh-key
+        - source: salt://resources/jenkins/agent-ssh-key
+        - makedirs: true
+
 build-configured-jenkins-image:
     cmd.run:
         - name: "docker build -t jenkins-with-plugins {{ jenkins_workdir }}"
