@@ -25,11 +25,11 @@ jenkins:
       remoteFS: "/home/jenkins"
       retentionStrategy: "always"
 
-  # tool:
-  #   git:
-  #     installations:
-  #       - name: git
-  #         home: /usr/local/bin/git
+# tool:
+#   git:
+#     installations:
+#       - name: git
+#         home: /usr/local/bin/git
 
 credentials:
   system:
@@ -39,6 +39,6 @@ credentials:
           id: "jenkins-agents"
           privateKeySource:
             directEntry:
-              privateKey: "${readFile:/var/jenkins_master/cacsc_configs/agent-ssh-key}"
+              privateKey: "${readFile:/var/jenkins_master/ssl/agent-private-key}"
           scope: GLOBAL
           username: "jenkins"

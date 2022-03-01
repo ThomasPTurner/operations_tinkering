@@ -31,10 +31,10 @@ jenkins-with-plugins-dockerfile:
         - source: salt://resources/jenkins/jenkins-with-plugins.Dockerfile
         - makedirs: true
 
-agent-ssh-key:
+agent-private-key:
     file.managed:
-        - name: {{ jenkins_workdir }}/conf/agent-ssh-key
-        - source: salt://resources/jenkins/agent-ssh-key
+        - name: {{ jenkins_workdir }}/ssl/agent-private-key
+        - contents_pillar: jenkins-master:agent-private-key
         - makedirs: true
 
 build-configured-jenkins-image:
@@ -52,3 +52,6 @@ start-jenkins:
         - file: {{ jenkins_compose_file }}
         - file: {{ jenkins_conf_file }}
         - file: jenkins-plugins-file
+        - file: agent-private-key
+    watch:
+        - file: {{ jenkins_conf_file }}

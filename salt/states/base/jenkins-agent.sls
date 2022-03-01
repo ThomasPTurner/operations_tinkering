@@ -11,9 +11,12 @@ jenkins/ssh-agent:
     file.managed:
         - source: salt://resources/jenkins-agent/{{agent_compose_file}}
         - makedirs: true
+        - template: jinja
 
 start-jenkins:
     cmd.run:
         - name: 'docker-compose -f {{agent_workdir}}{{agent_compose_file}} up -d'
     require:
+        - file: {{agent_workdir}}{{agent_compose_file}}
+    watch:
         - file: {{agent_workdir}}{{agent_compose_file}}
