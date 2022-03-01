@@ -18,6 +18,7 @@ jenkins/jenkins:
     file.managed:
         - source: salt://resources/jenkins/jenkins-config.yml
         - makedirs: true
+        - template: jinja
 
 jenkins-plugins-file:
     file.managed:

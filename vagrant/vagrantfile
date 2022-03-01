@@ -25,7 +25,13 @@ Vagrant.configure("2") do |config|
   config.vm.define "jenkins-agent" do |jenkins|
     jenkins.vm.provision "shell", path: "scripts/bootstrap.sh"
     jenkins.vm.network "private_network", ip: "10.20.30.42"
-    jenkins.vm.hostname = "salt-jenkins-agent"
+    jenkins.vm.hostname = "salt-jenkins-agent-1"
   end
+
+  # config.vm.define "jenkins-agent-2" do |jenkins|
+  #   jenkins.vm.provision "shell", path: "scripts/bootstrap.sh"
+  #   jenkins.vm.network "private_network", ip: "10.20.30.43"
+  #   jenkins.vm.hostname = "salt-jenkins-agent-2"
+  # end
 
 end

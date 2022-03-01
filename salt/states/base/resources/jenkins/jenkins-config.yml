@@ -13,17 +13,22 @@ jenkins:
   authorizationStrategy: loggedInUsersCanDoAnything
 
 
+  {% set nodes = salt['mine.get']('*agent*', 'network.ip_addrs') | dictsort() %}
+  {% if nodes %}
   nodes:
+  {% for server, addrs in nodes %}
   - permanent:
       launcher:
         ssh:
           credentialsId: "jenkins-agents"
-          host: "10.20.30.42"
+          host: {{ addrs[0] }}
           port: 1337
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
-      name: "salt-node-1"
+      name: {{ server }}
       remoteFS: "/home/jenkins"
       retentionStrategy: "always"
+  {% endfor %}
+  {% endif %}
 
 # tool:
 #   git:
