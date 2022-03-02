@@ -1,16 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            def app = docker.build("thomaspturner/jenkins-with-plugins:latest", "./jenkins-master/Dockerfile"
-        }
-        stage('Publish') {
-            app.push('latest')
-        }
-    }
-    post {
-        always {
-            make cleanup
+        stage('test') {
+            steps {
+                echo 'beans'
+            }
         }
     }
 }
