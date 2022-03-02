@@ -30,11 +30,11 @@ jenkins:
   {% endfor %}
   {% endif %}
 
-# tool:
-#   git:
-#     installations:
-#       - name: git
-#         home: /usr/local/bin/git
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/bin/git
 
 credentials:
   system:
