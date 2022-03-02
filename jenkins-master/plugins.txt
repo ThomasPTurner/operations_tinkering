@@ -20,3 +20,4 @@ workflow-aggregator:latest
 ws-cleanup:latest
 ssh-slaves:latest
 ssh-credentials:latest
+docker-workflow:latest

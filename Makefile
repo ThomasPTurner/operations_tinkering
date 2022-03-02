@@ -16,4 +16,4 @@ jenkins_image:
 	docker build jenkins-master -t $(DOCKER_REGISTRY)/jenkins-with-plugins:$(DOCKER_IMAGE_TAG)
 
 cleanup:
-	docker rm
+	docker rmi $(DOCKER_REGISTRY)/jenkins-with-plugins:$(DOCKER_IMAGE_TAG)

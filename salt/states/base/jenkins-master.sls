@@ -8,6 +8,7 @@ include:
 thomaspturner/jenkins-with-plugins:
     docker_image.present:
         - tag: 'latest'
+        - force: true
 
 {{ jenkins_compose_file }}:
     file.managed:
