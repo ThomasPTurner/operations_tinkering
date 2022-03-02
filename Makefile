@@ -1,4 +1,7 @@
-up: 
+DOCKER_IMAGE_TAG ?= latest
+DOCKER_REGISTRY ?= thomaspturner
+
+start_vms:
 	cd vagrant && vagrant up --provision
 
 accept_keys:
@@ -7,5 +10,10 @@ accept_keys:
 apply_states:
 	cd vagrant && vagrant ssh salt -c 'sudo salt --log-level=debug "*" state.apply'
 
-print_jenkins_password:
-	cd vagrant && vagrant ssh jenkins-master -c "sudo docker exec jenkins-master_jenkins_1 cat /var/jenkins_home/secrets/initialAdminPassword"
+up: start_vms accept_keys apply_states
+
+jenkins_image:
+	docker build jenkins-master -t $(DOCKER_REGISTRY)/jenkins-with-plugins:$(DOCKER_IMAGE_TAG)
+
+cleanup:
+	docker rm
