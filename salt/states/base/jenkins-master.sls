@@ -5,9 +5,9 @@
 include:
     - docker
 
-jenkins/jenkins:
+thomaspturner/jenkins-with-plugins:
     docker_image.present:
-        - tag: '2.328'
+        - tag: 'latest'
 
 {{ jenkins_compose_file }}:
     file.managed:
@@ -20,30 +20,11 @@ jenkins/jenkins:
         - makedirs: true
         - template: jinja
 
-jenkins-plugins-file:
-    file.managed:
-        - name: {{ jenkins_workdir }}/plugins.txt
-        - source: salt://resources/jenkins/plugins.txt
-        - makedirs: true
-
-jenkins-with-plugins-dockerfile:
-    file.managed:
-        - name: {{ jenkins_workdir }}/Dockerfile
-        - source: salt://resources/jenkins/jenkins-with-plugins.Dockerfile
-        - makedirs: true
-
 agent-private-key:
     file.managed:
         - name: {{ jenkins_workdir }}/ssl/agent-private-key
         - contents_pillar: jenkins-master:agent-private-key
         - makedirs: true
-
-build-configured-jenkins-image:
-    cmd.run:
-        - name: "docker build -t jenkins-with-plugins {{ jenkins_workdir }}"
-
-jenkins-with-plugins:
-    docker_image.present: []
 
 start-jenkins:
     cmd.run:
@@ -52,7 +33,6 @@ start-jenkins:
         - pkg: docker-compose-package-install-pkgs
         - file: {{ jenkins_compose_file }}
         - file: {{ jenkins_conf_file }}
-        - file: jenkins-plugins-file
         - file: agent-private-key
     watch:
         - file: {{ jenkins_conf_file }}
