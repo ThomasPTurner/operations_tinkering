@@ -13,6 +13,10 @@ jenkins/ssh-agent:
         - makedirs: true
         - template: jinja
 
+docker-sock-perms:
+    cmd.run:
+        - name: sudo chmod 666 /var/run/docker.sock
+
 start-jenkins:
     cmd.run:
         - name: 'docker-compose -f {{agent_workdir}}{{agent_compose_file}} up -d'

@@ -51,7 +51,7 @@ credentials:
 jobs:
   # Note: There MUST be four spaces indent before multiline strings.
   - script: >
-      pipelineJob('example-job') {
+      pipelineJob('docker-example-job') {
         definition {
           cpsScm {
             scm {
