@@ -47,3 +47,21 @@ credentials:
               privateKey: "${readFile:/var/jenkins_master/ssl/agent-private-key}"
           scope: GLOBAL
           username: "jenkins"
+
+jobs:
+  # Note: There MUST be four spaces indent before multiline strings.
+  - script: >
+      pipelineJob('example-job') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/ThomasPTurner/operations_tinkering.git')
+                }
+                branch('*/main')
+              }
+            }
+          }
+        }
+      }
