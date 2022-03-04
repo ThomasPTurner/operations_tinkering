@@ -35,6 +35,15 @@ tool:
     installations:
       - name: git
         home: /usr/bin/git
+  dockerTool:
+    installations:
+    - home: "/usr/bin/docker"
+      name: "docker"
+      properties:
+      - installSource:
+          installers:
+          - fromDocker:
+              version: "latest"
 
 credentials:
   system:
