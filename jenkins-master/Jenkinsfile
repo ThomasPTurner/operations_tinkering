@@ -1,4 +1,5 @@
 node {
     checkout scm
-    def jenkins-master-image = docker.build("thomasptuner/jenkins-with-plugins:latest", "./jenkins-master")
+    def jenkinsMasterImage = docker.build("thomasptuner/jenkins-with-plugins:${env.BUILD_ID}", "./jenkins-master")
+    jenkinsMasterImage.push('latest')
 }
