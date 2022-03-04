@@ -51,7 +51,7 @@ credentials:
 jobs:
   # Note: There MUST be four spaces indent before multiline strings.
   - script: >
-      pipelineJob('docker-example-job') {
+      pipelineJob('jenkins-master-image') {
         definition {
           cpsScm {
             scm {
@@ -59,6 +59,7 @@ jobs:
                 remote {
                   url('https://github.com/ThomasPTurner/operations_tinkering.git')
                 }
+                scriptPath('jenkins-master/Jenkinsfile')
                 branch('*/main')
               }
             }

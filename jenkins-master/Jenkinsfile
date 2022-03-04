@@ -1,0 +1,4 @@
+node {
+    checkout scm
+    def jenkins-master-image = docker.build("thomasptuner/jenkins-withplugins", "./jenskins-master/Dockerfile")
+}
