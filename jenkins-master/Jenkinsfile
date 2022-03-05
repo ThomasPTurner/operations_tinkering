@@ -1,6 +1,6 @@
 node {
     checkout scm
-    docker.withRegistry("https://docker.io", "dockerLogin") {
+    docker.withRegistry("", "dockerLogin") {
         def jenkinsMasterImage = docker.build("thomasptuner/jenkins-with-plugins:${env.BUILD_ID}", "./jenkins-master")
         jenkinsMasterImage.push()
     }
