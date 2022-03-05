@@ -1,8 +1,8 @@
 node {
     checkout scm
     def jenkinsMasterImage = docker.build("thomasptuner/jenkins-with-plugins:${env.BUILD_ID}", "./jenkins-master")
-    jenkinsMasterImage.push('latest')
-    docker.withRegistry( [ credentialsId: "dockerLogin" ] ) {
-        jenkinsMasterImage.push('latest')
+    jenkinsMasterImage.push("latest")
+    docker.withRegistry("https://docker.io", "dockerLogin") {
+        jenkinsMasterImage.push("latest")
     }
 }
