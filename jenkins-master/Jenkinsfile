@@ -2,6 +2,6 @@ node {
     checkout scm
     docker.withRegistry("", "dockerLogin") {
         def jenkinsMasterImage = docker.build("thomaspturner/jenkins-with-plugins:${env.BUILD_ID}", "./jenkins-master")
-        jenkinsMasterImage.push()
+        jenkinsMasterImage.push("latest")
     }
 }
